@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poosh Style 3-Column Draggable Slider</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #fafafa; padding: 50px 20px; }
+
+    .featured--slider {
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .featured--slider h2 {
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 50px;
+      color: #111;
+    }
+
+    .slider-container {
+      overflow: hidden;
+      border-radius: 12px;
+      user-select: none;
+      cursor: grab;
+    }
+
+    .slider-container:active {
+      cursor: grabbing;
+    }
+
+    .slides-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .featured--slide {
+      min-width: calc((100% - 40px) / 3); /* 3 columns */
+      flex: 0 0 auto;
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+
+    .featured--slide:hover {
+      transform: translateY(-8px);
+    }
+
+    .featured--slide img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Arrows */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s;
+    }
+
+    .arrow:hover {
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .arrow-left { left: -28px; }
+    .arrow-right { right: -28px; }
+
+    .arrow img {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Dots */
+    .dots {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      margin: 0 6px;
+      background: #ddd;
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+
+    .dot.active {
+      background: #000;
+      transform: scale(1.2);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .featured--slide {
+        min-width: calc((100% - 20px) / 2); /* 2 columns on tablet */
+      }
+      .arrow { display: none; } /* Hide arrows on small screens */
+    }
+
+    @media (max-width: 640px) {
+      .featured--slide {
+        min-width: calc(100% - 40px); /* 1 column on mobile */
+      }
+      .slides-track { gap: 15px; padding: 0 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="featured--slider">
+    <h2>Trending Articles</h2>
+
+    <div class="slider-container" id="slider">
+      <div class="slides-track" id="track">
+
+        <div class="featured--slide">
+          <a href="#"><img src="https://poosh.com/app/uploads/2025/11/The-Pooshmas-Holiday-Gift-Guide-2025-with-Exclusive-Picks-from-the-Kardashian-Jenner-Family-600x600.jpg" alt=""></a>
+        </div>
+        <div class="featured--slide">
+          <a href="#"><img src="https://poosh.com/app/uploads/2021/11/crossroadskitchen-600x600.jpg" alt=""></a>
+        </div>
+        <div class="featured--slide">
+          <a href="#"><img src="https://poosh.com/app/uploads/2025/04/The-Three-Loves-Theory-600x600.jpg" alt=""></a>
+        </div>
+        <div class="featured--slide">
+          <a href="#"><img src="https://poosh.com/app/uploads/2020/12/promo-12-600x600.jpg" alt=""></a>
+        </div>
+        <div class="featured--slide">
+          <a href="#"><img src="https://poosh.com/app/uploads/2019/03/image-8-600x600.jpg" alt=""></a>
+        </div>
+        <div class="featured--slide">
+          <a href="#"><img src="https://poosh.com/app/uploads/2025/10/WhyYoureStillTired-600x600.jpg" alt=""></a>
+        </div>
+        <div class="featured--slide">
+          <a href="#"><img src="https://poosh.com/app/uploads/2025/11/The-Pooshmas-Holiday-Gift-Guide-2025-with-Exclusive-Picks-from-the-Kardashian-Jenner-Family-600x600.jpg" alt=""></a>
+        </div>
+        <div class="featured--slide">
+          <a href="#"><img src="https://poosh.com/app/uploads/2021/11/crossroadskitchen-600x600.jpg" alt=""></a>
+        </div>
+
+      </div>
+    </div>
+
+    <button class="arrow arrow-left" id="prev">
+      <img src="https://poosh.com/app/themes/poosh/dist/images/global/arrow-left_8de46d6a.svg" alt="Prev">
+    </button>
+    <button class="arrow arrow-right" id="next">
+      <img src="https://poosh.com/app/themes/poosh/dist/images/global/arrow-right_3d197e98.svg" alt="Next">
+    </button>
+
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <script>
+    const track = document.getElementById('track');
+    const slider = document.getElementById('slider');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    const dotsContainer = document.getElementById('dots');
+
+    const slides = document.querySelectorAll('.featured--slide');
+    const totalSlides = slides.length;
+
+    let slidesPerView = 3;
+    if (window.innerWidth <= 1024) slidesPerView = 2;
+    if (window.innerWidth <= 640) slidesPerView = 1;
+
+    const totalPages = Math.ceil(totalSlides / slidesPerView);
+    let currentPage = 0;
+
+    // Create dots
+    for (let i = 0; i < totalPages; i++) {
+      const dot = document.createElement('span');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToPage(i));
+      dotsContainer.appendChild(dot);
+    }
+    const dots = document.querySelectorAll('.dot');
+
+    function updateSlider() {
+      const slideWidth = slides[0].offsetWidth + 20; // +gap
+      const offset = -currentPage * slideWidth * slidesPerView;
+      track.style.transform = `translateX(${offset}px)`;
+
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentPage));
+    }
+
+    function nextPage() {
+      if (currentPage < totalPages - 1) {
+        currentPage++;
+      } else {
+        currentPage = 0; // loop back
+      }
+      updateSlider();
+    }
+
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
+      } else {
+        currentPage = totalPages - 1;
+      }
+      updateSlider();
+    }
+
+    function goToPage(page) {
+      currentPage = page;
+      updateSlider();
+    }
+
+    nextBtn.addEventListener('click', nextPage);
+    prevBtn.addEventListener('click', prevPage);
+
+    // Auto-play
+    let autoplay = setInterval(nextPage, 5000);
+    slider.addEventListener('mouseenter', () => clearInterval(autoplay));
+    slider.addEventListener('mouseleave', () => autoplay = setInterval(nextPage, 5000));
+
+    // Mouse drag
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      slider.classList.add('active');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = track.getBoundingClientRect().left;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
+
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+      slider.classList.remove('active');
+
+      const walked = track.getBoundingClientRect().left - scrollLeft;
+      if (walked < -50) nextPage();
+      else if (walked > 50) prevPage();
+      else updateSlider(); // snap back
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 2;
+      track.style.transform = `translateX(${scrollLeft + walk}px)`;
+    });
+
+    // Touch support
+    slider.addEventListener('touchstart', (e) => {
+      isDown = true;
+      startX = e.touches[0].pageX - slider.offsetLeft;
+      scrollLeft = track.getBoundingClientRect().left;
+    });
+
+    slider.addEventListener('touchend', () => {
+      isDown = false;
+      const walked = track.getBoundingClientRect().left - scrollLeft;
+      if (walked < -50) nextPage();
+      else if (walked > 50) prevPage();
+      else updateSlider();
+    });
+
+    slider.addEventListener('touchmove', (e) => {
+      if (!isDown) return;
+      const x = e.touches[0].pageX - slider.offsetLeft;
+      const walk = (x - startX) * 2;
+      track.style.transform = `translateX(${scrollLeft + walk}px)`;
+    });
+
+    // Resize handling
+    window.addEventListener('resize', () => {
+      slidesPerView = window.innerWidth <= 640 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
+      updateSlider();
+    });
+
+    // Init
+    updateSlider();
+  </script>
+</body>
+</html>
