@@ -41,7 +41,7 @@
       }
       .post--category.post--meta-detail.sm-headline.sm-headline--bold.caps > a {
         font-size: 20px !important;
-        color: white !important;
+        color: black !important;
       }
 
       .featured--slider-wrapper .slick-slide img {
@@ -53,15 +53,14 @@
         object-fit: cover;
       }
       .featured--slider h2 {
-        color: white !important;
+        color: black !important;
       }
-      button img {
-        margin-left: 10px;
-        filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
-          hue-rotate(38deg) brightness(104%) contrast(105%);
+      h2 > a {
+        color: black !important;
       }
-      h2 > a{
-        color: white !important;
+      .cs-header-topbar.cs-header-topbar-one,
+      .cs-header__outer {
+        display: none !important;
       }
     </style>
   </head>
@@ -69,11 +68,11 @@
   <body
     class="home wp-singular page-template page-template-tmpl-home tmpl-home page page-id-12 wp-theme-pooshresources app-data index-data singular-data page-data page-12-data page-home-data tmpl-home-data front-page-data"
   >
-    <div class="main-wrap" style="overflow: hidden; background-color: #161616">
+    <div class="main-wrap" style="overflow: hidden; ">
       <header class="navigation--wrapper" id="primary-nav"></header>
       <main id="main" class="main-content" tabindex="-1">
         <section class="featured--slider">
-          <h2 class="align-center" style="color: white !important">
+          <h2 class="align-center" style="color: black !important">
             TRENDING ARTICLES
           </h2>
           <!-- Slider -->
@@ -341,14 +340,14 @@
           <!-- Slider Controls -->
           <aside
             class="featured--slider-controls relative"
-            style="background-color: #161616; color: white"
+            style="color: black"
           >
             <div class="post--meta d-flex justify-content-center">
               <div
                 class="post--category post--meta-detail sm-headline sm-headline--bold caps"
               ></div>
             </div>
-            <h2 style="color: white"></h2>
+            <h2 style="color: black"></h2>
             <p class="partnership-with-meta text-center"></p>
             <button
               class="featured--arrow-left"
