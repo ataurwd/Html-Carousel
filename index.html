@@ -84,6 +84,7 @@
               data-time="2 weeks ago"
               data-category="Fashion high fashion highlights"
               data-partnership=""
+              data-category-url="#"
             >
               <a
                 target="_blank"
@@ -129,6 +130,8 @@
               data-time="4 years ago"
               data-category="Beauty"
               data-partnership=""
+                          data-category-url="#"
+
             >
               <a
                 target="_blank"
@@ -171,7 +174,7 @@
               data-title="Why Fragrance Is the Most Intimate Accessory"
               data-time="3 months ago"
               data-category="beauty fragrence focus"
-              data-category-url="https://poosh.com/category/health-wellness/relationships/"
+              data-category-url="#"
               data-partnership=""
               data-target="_blank"
             >
@@ -216,7 +219,7 @@
               data-title="Why Fragrance Is the Most Intimate Accessory"
               data-time="5 years ago"
               data-category="Culture & society"
-              data-category-url="https://poosh.com/category/kkb/family/"
+              data-category-url="#"
               data-partnership=""
             >
               <a
@@ -257,16 +260,16 @@
             </div>
             <div
               class="featured--slide"
-              data-url="https://the-overrated.com/the-female-gaze-in-modern-culture-power-fear-"
+              data-url="https://the-overrated.com/the-female-gaze-in-modern-culture-power-fear-and-perception/"
               data-title="The Female Gaze in Modern Culture: Power, Fear, and Perception"
               data-time="2 years ago"
               data-category="Culture & society thought pieces"
-              data-category-url="https://poosh.com/category/home-entertaining/recipes/"
+              data-category-url="#"
               data-partnership=""
             >
               <a
                 target="_blank"
-                href="https://the-overrated.com/the-female-gaze-in-modern-culture-power-fear-"
+                href="https://the-overrated.com/the-female-gaze-in-modern-culture-power-fear-and-perception/"
                 ><img
                   target="_blank"
                   src="https://the-overrated.com/wp-content/uploads/2025/12/66e495e155a33b84c88a00e485b3722d.jpg"
@@ -306,7 +309,7 @@
               data-title="Schiaparelli Haute Couture Spring–Summer 2025:"
               data-time="1 month ago"
               data-category="Fashion high fashion highlights"
-              data-category-url="https://poosh.com/category/health-wellness/health/"
+              data-category-url="#"
               data-partnership=""
             >
               <a
@@ -353,9 +356,9 @@
             style="color: black"
           >
             <div class="post--meta d-flex justify-content-center">
-              <div
-                class="post--category post--meta-detail sm-headline sm-headline--bold caps"
-              ></div>
+              <h4
+                class="post--category post--meta-detail sm-headline sm-headline--bold caps divtitile-231"
+              ></h4>
             </div>
             <h2 class="title-1324" style="color: black"></h2>
             <p class="partnership-with-meta text-center"></p>
@@ -387,29 +390,39 @@
         src="https://the-overrated.com/wp-content/uploads/2025/main_cc129860.js"
         id="sage/main.js-js"
       ></script>
-      <script>
-        // Function to set target="_blank" for all a inside .title-1324
-        function setLinksTargetBlank() {
-          document.querySelectorAll(".title-1324 a").forEach((link) => {
-            link.setAttribute("target", "_blank");
-          });
-        }
+<script>
+  // h2.title-1324 er moddhe a tag e target="_blank"
+  function setH2LinksTargetBlank() {
+    document.querySelectorAll("h2.title-1324 a").forEach(link => {
+      link.setAttribute("target", "_blank");
+    });
+  }
 
-        // Initial run (in case some links already exist)
-        setLinksTargetBlank();
+  // h4.divtitle-231 er moddhe a tag e target="_blank"
+  function setH4LinksTargetBlank() {
+    document.querySelectorAll("h4.divtitle-231 a").forEach(link => {
+      link.setAttribute("target", "_blank");
+    });
+  }
 
-        // Observe changes in the DOM
-        const observer = new MutationObserver((mutationsList) => {
-          for (const mutation of mutationsList) {
-            if (mutation.type === "childList") {
-              setLinksTargetBlank(); // run again when new nodes are added
-            }
-          }
-        });
+  // Initial run
+  setH2LinksTargetBlank();
+  setH4LinksTargetBlank();
 
-        // Observe the entire document body
-        observer.observe(document.body, { childList: true, subtree: true });
-      </script>
+  // Observe DOM changes
+  const observer = new MutationObserver((mutationsList) => {
+    for (const mutation of mutationsList) {
+      if (mutation.type === "childList") {
+        setH2LinksTargetBlank();
+        setH4LinksTargetBlank();
+      }
+    }
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+</script>
+
+
     </div>
   </body>
 </html>
