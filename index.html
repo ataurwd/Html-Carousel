@@ -388,15 +388,27 @@
         id="sage/main.js-js"
       ></script>
       <script>
-        // sob h2 jekhane class "title-1324"
-        const titles = document.querySelectorAll(".title-1324");
+        // Function to set target="_blank" for all a inside .title-1324
+        function setLinksTargetBlank() {
+          document.querySelectorAll(".title-1324 a").forEach((link) => {
+            link.setAttribute("target", "_blank");
+          });
+        }
 
-        titles.forEach((h2) => {
-          const link = h2.querySelector("a"); // h2 er moddhe <a> dhore
-          if (link) {
-            link.setAttribute("target", "_blank"); // target="_blank" set koro
+        // Initial run (in case some links already exist)
+        setLinksTargetBlank();
+
+        // Observe changes in the DOM
+        const observer = new MutationObserver((mutationsList) => {
+          for (const mutation of mutationsList) {
+            if (mutation.type === "childList") {
+              setLinksTargetBlank(); // run again when new nodes are added
+            }
           }
         });
+
+        // Observe the entire document body
+        observer.observe(document.body, { childList: true, subtree: true });
       </script>
     </div>
   </body>
