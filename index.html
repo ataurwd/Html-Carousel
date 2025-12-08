@@ -85,7 +85,8 @@
               data-category="Fashion high fashion highlights"
               data-partnership=""
             >
-              <a target="_blank"
+              <a
+                target="_blank"
                 href="https://the-overrated.com/chanel-metiers-dart-2025-the-c-line/"
                 ><img
                   href="https://the-overrated.com/chanel-metiers-dart-2025-the-c-line/"
@@ -122,18 +123,17 @@
               </div>
             </div>
             <div
-              data-url="https://the-overrated.com/the-art-of-the-bath-a-sanctuary-you-create-for-"
+              data-url="https://the-overrated.com/the-art-of-the-bath-a-sanctuary-you-create-for-yourself/"
               class="featured--slide"
               data-title="A Sanctuary You Create for Yourself"
               data-time="4 years ago"
               data-category="Beauty"
               data-partnership=""
             >
-              <a target="_blank"
-                href="https://the-overrated.com/the-art-of-the-bath-a-sanctuary-you-create-for-"
+              <a
+                target="_blank"
+                href="https://the-overrated.com/the-art-of-the-bath-a-sanctuary-you-create-for-yourself/"
                 ><img
-                  target="_blank"
-                  href="https://the-overrated.com/the-art-of-the-bath-a-sanctuary-you-create-for-"
                   src="https://the-overrated.com/wp-content/uploads/2025/12/The-Best-Teas-and-Their-Benefits-A-Flavorful-Journey-into-Wellness.jpg"
                   alt="Vegan Recipe Ideas for THANKSGIVING"
                   loading="lazy"
@@ -176,9 +176,9 @@
               data-target="_blank"
             >
               <a
-              target="_blank"
+                target="_blank"
                 href="https://the-overrated.com/why-fragrance-is-the-most-intimate-accessory/"
-                ><img 
+                ><img
                   src="https://the-overrated.com/wp-content/uploads/2025/12/5d7875ff5e1e1dfe6165d30392f331fb.jpg"
                   alt="The Three Loves Theory"
                   loading="lazy"
@@ -219,7 +219,8 @@
               data-category-url="https://poosh.com/category/kkb/family/"
               data-partnership=""
             >
-              <a target="_blank"
+              <a
+                target="_blank"
                 href="https://the-overrated.com/why-solitude-is-becoming-aspirational/"
                 ><img
                   target="_blank"
@@ -263,7 +264,8 @@
               data-category-url="https://poosh.com/category/home-entertaining/recipes/"
               data-partnership=""
             >
-              <a target="_blank"
+              <a
+                target="_blank"
                 href="https://the-overrated.com/the-female-gaze-in-modern-culture-power-fear-"
                 ><img
                   target="_blank"
@@ -307,7 +309,8 @@
               data-category-url="https://poosh.com/category/health-wellness/health/"
               data-partnership=""
             >
-              <a target="_blank"
+              <a
+                target="_blank"
                 href="https://the-overrated.com/schiaparelli-haute-couture-springsummer-2025-when-the-past-demands-the-future-to-try-harder/"
                 ><img
                   target="_blank"
@@ -354,7 +357,7 @@
                 class="post--category post--meta-detail sm-headline sm-headline--bold caps"
               ></div>
             </div>
-            <h2 style="color: black"></h2>
+            <h2 class="title-1324" style="color: black"></h2>
             <p class="partnership-with-meta text-center"></p>
             <button
               class="featured--arrow-left"
@@ -384,6 +387,17 @@
         src="https://the-overrated.com/wp-content/uploads/2025/main_cc129860.js"
         id="sage/main.js-js"
       ></script>
+      <script>
+        // sob h2 jekhane class "title-1324"
+        const titles = document.querySelectorAll(".title-1324");
+
+        titles.forEach((h2) => {
+          const link = h2.querySelector("a"); // h2 er moddhe <a> dhore
+          if (link) {
+            link.setAttribute("target", "_blank"); // target="_blank" set koro
+          }
+        });
+      </script>
     </div>
   </body>
 </html>
